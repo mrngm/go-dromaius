@@ -14,9 +14,6 @@ var (
 		"reset":    true,
 		"console":  true,
 	}
-
-	errCommandNotAllowed = errors.New("command not allowed")
-	errHostNotRecognized = errors.New("incorrect hostname supplied")
 )
 
 func RunCommand(hostname, cmd string) error {

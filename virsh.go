@@ -6,8 +6,7 @@ import (
 )
 
 var (
-	virshPath                = "/usr/bin/virsh"
-	errCommandNotImplemented = errors.New("command not implemented")
+	virshPath = "/usr/bin/virsh"
 )
 
 type VirshMachine struct {
