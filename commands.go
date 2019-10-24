@@ -1,9 +1,5 @@
 package dromaius
 
-import (
-	"errors"
-)
-
 var (
 	// AllowedCommands define which commands a user may execute.
 	AllowedCommands = map[string]bool{

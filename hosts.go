@@ -7,6 +7,6 @@ func AddHost(hostname string) {
 }
 
 func KnownHost(hostname string) bool {
-	known, ok := knownHosts[hostname]
+	_, ok := knownHosts[hostname]
 	return ok
 }

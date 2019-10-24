@@ -1,7 +1,9 @@
 package dromaius
 
 import (
-	"errors"
+	"bytes"
+	"fmt"
+	"os"
 	"os/exec"
 )
 
@@ -20,25 +22,55 @@ func NewMachine(hostname string) *VirshMachine {
 }
 
 func (v *VirshMachine) Start() error {
-	return errCommandNotImplemented
+	return v.exec("start", false)
 }
 
 func (v *VirshMachine) Shutdown() error {
-	return errCommandNotImplemented
+	return v.exec("shutdown", false)
 }
 
 func (v *VirshMachine) Reset() error {
-	return errCommandNotImplemented
+	return v.exec("reset", false)
 }
 
 func (v *VirshMachine) Reboot() error {
-	return errCommandNotImplemented
+	return v.exec("reboot", false)
 }
 
 func (v *VirshMachine) Destroy() error {
-	return errCommandNotImplemented
+	return v.exec("destroy", false)
 }
 
 func (v *VirshMachine) Console() error {
-	return errCommandNotImplemented
+	return v.exec("console", true)
+}
+
+func (v *VirshMachine) exec(cmd string, attachIO bool) error {
+	switch cmd {
+	case "start":
+	case "shutdown":
+	case "reset":
+	case "reboot":
+	case "destroy":
+	case "console":
+	default:
+		return errCommandNotImplemented
+	}
+
+	var outerrs bytes.Buffer
+	c := exec.Command(virshPath, cmd, v.name)
+	if attachIO {
+		c.Stdin = os.Stdin
+		c.Stdout = os.Stdout
+	} else {
+		c.Stdout = &outerrs
+		c.Stderr = &outerrs
+	}
+	err := c.Run()
+	if err != nil {
+		fmt.Printf("stdout/err: %q\n", outerrs.String())
+		return err
+	}
+
+	return nil
 }
