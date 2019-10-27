@@ -1,0 +1,4 @@
+{"AllowedHosts": [
+	"vhost1.example.local",
+	"vhost2.example.local"
+]}

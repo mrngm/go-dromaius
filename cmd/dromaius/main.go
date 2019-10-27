@@ -42,11 +42,17 @@ func main() {
 		}
 	}
 
+	os.Clearenv()
+
 	for _, host := range runningConfig.AllowedHosts {
 		dromaius.AddHost(host)
 	}
 
-	// TODO: interactive mode
+	if *cmd == "interactive" {
+		runInteractive(*hostName)
+		return
+	}
+
 	err := dromaius.RunCommand(*hostName, *cmd)
 	if err != nil {
 		fmt.Printf("Error when running command %q on host %q: %v\n", *cmd, *hostName, err)

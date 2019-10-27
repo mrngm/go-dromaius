@@ -8,6 +8,7 @@ var (
 		"shutdown": true,
 		"destroy":  true,
 		"reset":    true,
+		"status":   true,
 		"console":  true,
 	}
 )
@@ -35,6 +36,8 @@ func RunCommand(hostname, cmd string) error {
 		return machine.Reset()
 	case "console":
 		return machine.Console()
+	case "status":
+		return machine.Status()
 	default:
 		return errCommandNotAllowed
 	}
