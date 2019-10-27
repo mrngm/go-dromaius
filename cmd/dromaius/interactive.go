@@ -44,13 +44,16 @@ func runInteractive(hostname string) {
 		case "destroy":
 		case "console":
 		case "status":
+		case "exit":
+			fmt.Printf("\nGoodbye!\n")
+			return
 		case "":
 			continue
 		case "help":
 			printHelp()
 			continue
 		default:
-			fmt.Printf("Expecting one command (start, shutdown, reboot, reset, destroy, console, status, help)\n")
+			fmt.Printf("Expecting one command (start, shutdown, reboot, reset, destroy, console, status, exit, help)\n")
 			continue
 		}
 
@@ -62,12 +65,13 @@ func runInteractive(hostname string) {
 }
 
 func printHelp() {
-	fmt.Println("Available commands: start, shutdown, reboot, reset, destroy, console, status, help")
+	fmt.Println("Available commands: start, shutdown, reboot, reset, destroy, console, status, exit, help")
 	fmt.Println()
 	fmt.Println("start           : start the domain")
 	fmt.Println("shutdown, reboot: send ACPI signal to the domain to shutdown or reboot")
 	fmt.Println("destroy, reset  : immediately turn off or reboot the domain")
 	fmt.Println("console         : connect to the serial console of the domain")
 	fmt.Println("status          : show the state of the domain")
+	fmt.Println("exit            : exit the dromaius shell")
 	fmt.Println("help            : show this help message")
 }
