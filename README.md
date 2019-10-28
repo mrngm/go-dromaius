@@ -35,13 +35,22 @@ not fine-grained enough to restrict access to _one_ virtual machine. See also
 
 ## Setup
 
-* Create a user, e.g.: ```# adduser --system --disabled-password --shell /bin/bash --ingroup nogroup --home /var/lib/dromaius dromaius```
-* Prepare the `.ssh/` directory: ```# mkdir -p /var/lib/dromaius/.ssh
+* Create a user, e.g.:
+```
+# adduser --system --disabled-password --shell /bin/bash --ingroup nogroup --home /var/lib/dromaius dromaius
+```
+* Prepare the `.ssh/` directory:
+```
+# mkdir -p /var/lib/dromaius/.ssh
 # touch /var/lib/dromaius/.ssh/authorized_keys
 # chown dromaius:nogroup /var/lib/dromaius/.ssh/
 # chmod 700 /var/lib/dromaius/.ssh/
-# chmod 600 /var/lib/dromaius/.ssh/authorized_keys```
+# chmod 600 /var/lib/dromaius/.ssh/authorized_keys
+```
 * By default (in Debian), the `libvirt-sock` UNIX socket has mode 777, allowing read/write access to all. If your configuration is different, make sure the `dromaius` user is in the correct group, and the socket has the correct user/group/mode settings
-* Per supplied SSH key, add the following line to `/var/lib/dromaius/.ssh/authorized_keys`: ```command="/var/lib/dromaius/dromaius -cmd interactive -host <full hostname of the VM>",no-agent-forwarding,no-port-forwarding,no-X11-forwarding <ssh-key>```
+* Per supplied SSH key, add the following line to `/var/lib/dromaius/.ssh/authorized_keys`:
+```
+command="/var/lib/dromaius/dromaius -cmd interactive -host <full hostname of the VM>",no-agent-forwarding,no-port-forwarding,no-X11-forwarding <ssh-key>
+```
 * Set the allowed hosts in `/var/lib/dromaius/dromaius.json` (see `dromaius.json.example`)
 * Let the user use `ssh dromaius@vm-host` to access the interactive console.
