@@ -27,11 +27,7 @@ not fine-grained enough to restrict access to _one_ virtual machine. See also
 
 ## Building
 
-* `go get github.com/creack/pty`
-* `go get golang.org/x/crypto/ssh/terminal`
 * `cd cmd/dromaius && go build`
-
-(`go.mod` will follow)
 
 ## Setup
 
